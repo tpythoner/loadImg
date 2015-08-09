@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>圆形进度条</title>
+
+<script type="text/javascript">
+
+	var loadImg = {
+		num: 0,
+		loadOne: function(args) {
+			var object = document.getElementById('box')
+			function loadImg (data){
+				i = data
+				var imgLeft = -(i*44+(i*10))+'px'
+				object.style.backgroundPosition = imgLeft+'\t'+'0px'
+				object.innerHTML = i+'%';
+			}
+			if(args+this.num <= 100){
+				loadImg(args+this.num);
+			}
+			this.num++;
+		},
+		loadTotal: function(args){
+			var object = document.getElementById('box');
+			var i = 0;
+			setInterval(function(){
+				i++
+				if(i>args){
+					i=args;
+				}
+				var imgLeft = -(i*44+(i*10))+'px';
+				object.style.backgroundPosition = imgLeft+'\t'+'0px';
+				object.innerHTML = i+'%';
+			},50)
+		}
+	};
+</script>
+
+<style type="text/css">
+#box{
+	width:44px;
+	margin:120px auto 0 auto;
+	height:44px;
+	line-height:44px;
+	text-align:center;
+	background: url(images/investjd.png);
+}
+</style>
+
+</head>
+<body>
+<button onclick="loadImg.loadOne(30)"></button>
+<button onclick="loadImg.loadTotal(50)"></button>
+<div id="box"></div>
+
+</body>
+</html>
